@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#EED6C4"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/todayText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/s_black"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp"
+        android:text="Today"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/masText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/masText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/maroon"
+        android:padding="10dp"
+        android:text="Cigarette"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/cooText"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/todayText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/masCount"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:inputType="number"
+        android:text="loading"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/cooCount"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/masText" />
+
+    <ImageView
+        android:id="@+id/addMas"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/s_red"
+        android:padding="5dp"
+        android:src="@drawable/ic_plus_one"
+        app:layout_constraintEnd_toStartOf="@+id/subMas"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/masCount"
+        app:layout_constraintTop_toBottomOf="@+id/masCount" />
+
+    <ImageView
+        android:id="@+id/subMas"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/s_green"
+        android:padding="5dp"
+        android:src="@drawable/ic_sub_one"
+        app:layout_constraintEnd_toEndOf="@+id/masCount"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/addMas"
+        app:layout_constraintTop_toBottomOf="@+id/masCount" />
+
+    <TextView
+        android:id="@+id/cooText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:padding="10dp"
+        android:text="Coolip"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/masText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/cooCount"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:inputType="number"
+        android:text="loading"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/masCount"
+        app:layout_constraintTop_toBottomOf="@+id/cooText" />
+
+    <ImageView
+        android:id="@+id/addCoo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/s_red"
+        android:padding="5dp"
+        android:src="@drawable/ic_plus_one"
+        app:layout_constraintEnd_toStartOf="@+id/subCoo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/masCount"
+        app:layout_constraintTop_toBottomOf="@+id/cooCount" />
+
+    <ImageView
+        android:id="@+id/subCoo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/s_green"
+        android:padding="5dp"
+        android:src="@drawable/ic_sub_one"
+        app:layout_constraintEnd_toEndOf="@+id/cooCount"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/addCoo"
+        app:layout_constraintTop_toBottomOf="@+id/cooCount" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="78dp" />
+
+
+    <TextView
+        android:id="@+id/reportTitleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#6B4F4F"
+        android:padding="10dp"
+        android:text="Weekly Report"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subMas" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerId"
+        tools:listitem="@layout/row_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#EED6C4"
+        app:layout_constraintBottom_toTopOf="@+id/todayDataBtn"
+        app:layout_constraintTop_toBottomOf="@+id/reportTitleText"
+        tools:layout_editor_absoluteX="30dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/todayDataBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit Report"
+        android:insetLeft="0dp"
+        android:insetRight="0dp"
+        android:backgroundTint="#161E54"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

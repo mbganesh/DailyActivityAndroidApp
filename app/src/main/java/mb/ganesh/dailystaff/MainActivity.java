@@ -110,6 +110,20 @@ public class MainActivity extends AppCompatActivity {
                 String date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
                 Log.e("Date", date);
 
+
+                for (int i = 0; i < dataList.size(); i++) {
+
+                    if(date.equals(dataList.get(i).getDate())){
+                        Log.e("isEql" , "yes its equal");
+                        View v = findViewById(android.R.id.content);
+                        Snackbar.make(v, "Already Report Submitted", Snackbar.LENGTH_LONG).setBackgroundTint(Color.RED).show();
+                        return;
+                    }
+
+
+                }
+
+
                 MainData mainData = new MainData();
                 mainData.setDate(date);
                 mainData.setCigCount(MASCOUNT);
@@ -121,6 +135,11 @@ public class MainActivity extends AppCompatActivity {
                 adapter = new MyAdapter(MainActivity.this , dataList , database);
                 adapter.notifyDataSetChanged();
                 recyclerView.setAdapter(adapter);
+
+                View v = findViewById(android.R.id.content);
+                Snackbar.make(v, date + " report added successfully ", Snackbar.LENGTH_LONG).setBackgroundTint(Color.GREEN).show();
+
+                return;
             }
         });
 

@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,8 +46,12 @@ public class MainActivity extends AppCompatActivity {
     MyAdapter adapter;
     RecyclerView recyclerView;
     MaterialButton submitBtn;
-    ArrayList<String> dateList, cigList, cooList;
-    String[] dates = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+
+//    String[] dates = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+
+    List<MainData> dataList = new ArrayList<>();
+    RoomDB database;
+
 
 
     @Override
@@ -74,9 +79,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerId);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        dateList = new ArrayList<>();
-        cigList = new ArrayList<>();
-        cooList = new ArrayList<>();
+
+//        init db
+        database = RoomDB.getInstance(this);
+//         store data
+        dataList = database.mainDao().getAll();
+
+
+        adapter = new MyAdapter(MainActivity.this , dataList , database);
+        recyclerView.setAdapter(adapter);
 
 
         int mas = preferences.getInt(MASKEY, MASCOUNT);
@@ -99,17 +110,17 @@ public class MainActivity extends AppCompatActivity {
                 String date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
                 Log.e("Date", date);
 
-                dateList.add(date);
-                cigList.add(String.valueOf(MASCOUNT));
-                cooList.add(String.valueOf(COOCOUNT));
+                MainData mainData = new MainData();
+                mainData.setDate(date);
+                mainData.setCigCount(MASCOUNT);
+                mainData.setCooCount(COOCOUNT);
 
-                adapter = new MyAdapter(MainActivity.this, dateList, cigList, cooList);
+                database.mainDao().insert(mainData);
+                dataList.clear();
+                dataList.addAll(database.mainDao().getAll());
+                adapter = new MyAdapter(MainActivity.this , dataList , database);
+                adapter.notifyDataSetChanged();
                 recyclerView.setAdapter(adapter);
-
-//                my staff
-                for (int i = 0; i < dateList.size(); i++) {
-                    Log.e("No : " +  1 , dateList.get(i) + "\t" + cigList.get(i) + "\t" + cooList.get(i));
-                }
             }
         });
 

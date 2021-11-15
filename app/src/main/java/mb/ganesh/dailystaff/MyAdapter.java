@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.zip.Inflater;
@@ -22,15 +23,14 @@ import java.util.zip.Inflater;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
 
     Context context;
-    ArrayList<String> dateList;
-    ArrayList<String> cigList;
-    ArrayList<String> coolList;
+    List<MainData> dataList;
+    RoomDB database;
 
-    public MyAdapter(Context context, ArrayList<String> dateList, ArrayList<String> cigList, ArrayList<String> coolList) {
+    public MyAdapter(Context context, List<MainData> dataList, RoomDB database) {
         this.context = context;
-        this.dateList = dateList;
-        this.cigList = cigList;
-        this.coolList = coolList;
+        this.dataList = dataList;
+        this.database = database;
+//        notifyDataSetChanged();
     }
 
     @NonNull
@@ -46,15 +46,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
 //        Do something
 
-        holder.date.setText(dateList.get(position));
-        holder.cig.setText(cigList.get(position));
-        holder.coo.setText(coolList.get(position));
+//        initialize main data
+        MainData data = dataList.get(position);
+
+//        initialize database
+        database = RoomDB.getInstance(context);
+
+        holder.date.setText(data.getDate());
+        holder.cig.setText(String.valueOf(data.getCigCount()));
+        holder.coo.setText(String.valueOf(data.getCooCount()));
 
     }
 
     @Override
     public int getItemCount() {
-        return cigList.size();
+        return dataList.size();
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {
